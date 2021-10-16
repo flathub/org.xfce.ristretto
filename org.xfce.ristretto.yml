@@ -40,6 +40,7 @@ modules:
         x-checker-data:
           type: anitya
           project-id: 15888
+          stable-only: true
           url-template: https://archive.xfce.org/src/xfce/xfce4-dev-tools/$major.$minor/xfce4-dev-tools-$version.tar.bz2
 
   # mandatory dependencies
@@ -55,6 +56,7 @@ modules:
         x-checker-data:
           type: anitya
           project-id: 232001
+          stable-only: true
           url-template: https://archive.xfce.org/src/xfce/libxfce4util/$major.$minor/libxfce4util-$version.tar.bz2
 
   - name: xfconf
@@ -71,6 +73,7 @@ modules:
         x-checker-data:
           type: anitya
           project-id: 14854
+          stable-only: true
           url-template: https://gitlab.xfce.org/xfce/xfconf/-/tags/xfconf-$version
       - type: patch
         path: Rename-org.xfce.Xfconf-to-org.xfce.ristretto.Xfconf.patch
@@ -90,6 +93,7 @@ modules:
         x-checker-data:
           type: anitya
           project-id: 232000
+          stable-only: true
           url-template: https://archive.xfce.org/src/xfce/libxfce4ui/$major.$minor/libxfce4ui-$version.tar.bz2
 
   - name: ristretto
@@ -102,4 +106,5 @@ modules:
         x-checker-data:
           type: anitya
           project-id: 8365
+          stable-only: true
           url-template: https://archive.xfce.org/src/apps/ristretto/$major.$minor/ristretto-$version.tar.bz2

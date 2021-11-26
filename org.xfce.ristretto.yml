@@ -76,7 +76,7 @@ modules:
           type: anitya
           project-id: 14854
           stable-only: true
-          url-template: https://gitlab.xfce.org/xfce/xfconf/-/tags/xfconf-$version
+          tag-template: https://gitlab.xfce.org/xfce/xfconf/-/tags/xfconf-$version
       - type: patch
         path: Rename-org.xfce.Xfconf-to-org.xfce.ristretto.Xfconf.patch
 

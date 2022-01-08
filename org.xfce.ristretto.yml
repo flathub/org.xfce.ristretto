@@ -2,7 +2,15 @@ app-id: org.xfce.ristretto
 runtime: org.freedesktop.Platform
 runtime-version: '21.08'
 sdk: org.freedesktop.Sdk
+sdk-extensions:
+  - org.freedesktop.Sdk.Extension.rust-stable
+  - org.freedesktop.Sdk.Extension.llvm12
 command: ristretto
+
+build-options:
+  append-path: /usr/lib/sdk/rust-stable/bin
+  prepend-path: /usr/lib/sdk/llvm12/bin
+  prepend-ld-library-path: /usr/lib/sdk/llvm12/lib
 
 finish-args:
   - --share=ipc

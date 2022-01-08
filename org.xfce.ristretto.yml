@@ -194,11 +194,10 @@ modules:
         tag: v0.9.3
         commit: ac76fe0d16a255bccefff5bdfddd865742176d85
         x-checker-data:
-          type: json
-          url: https://api.github.com/repos/AOMediaCodec/libavif/releases/latest
-          tag-query: .tag_name
-          version-query: $tag | sub("^v"; "")
-          timestamp-query: .published_at
+          type: anitya
+          project-id: 178015
+          stable-only: true
+          tag-template: v$version
       - type: shell
         commands:
           - sed -i 's|DESTINATION ${GDK_PIXBUF_MODULEDIR}|DESTINATION /app/lib/gdk-pixbuf-2.0/2.10.0/loaders|'

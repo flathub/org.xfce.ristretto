@@ -1,0 +1,168 @@
+From 6bb46f7ac4cd2fec9211cc3d8357d06cbda3c3f8 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Ga=C3=ABl=20Bonithon?= <gael@xfce.org>
+Date: Sat, 15 Jan 2022 16:56:34 +0100
+Subject: [PATCH] Emit signals manually instead of Tumbler
+
+For some reason, Tumbler cannot emit signals from the flatpak unless you
+specify `--socket=session-bus`, which is not possible in a Flathub
+build.
+
+This patch therefore replaces Tumbler's signal emission with a periodic
+check for the presence of thumbnails for which a request has been sent.
+When the thumbnails are found, everything happens as if Tumbler itself
+had sent the "Ready" signal.
+
+This is suboptimal in various ways, but it should work just fine. A flag
+is provided in case Tumbler is finally able to send signals: if the
+"Finished" signal is received, this patch is disabled.
+
+See also:
+https://github.com/flathub/flathub/issues/2770
+https://github.com/flathub/org.xfce.ristretto/pull/7
+---
+ src/file.c        |  2 +-
+ src/file.h        |  4 ++++
+ src/thumbnailer.c | 61 +++++++++++++++++++++++++++++++++++++++++++++++
+ 3 files changed, 66 insertions(+), 1 deletion(-)
+
+diff --git a/src/file.c b/src/file.c
+index b3a87adb..c7cb721b 100644
+--- a/src/file.c
++++ b/src/file.c
+@@ -509,7 +509,7 @@ rstto_file_set_thumbnail_state (RsttoFile *r_file,
+     r_file->priv->thumbnail_states[flavor] = state;
+ }
+ 
+-static const gchar *
++const gchar *
+ rstto_file_get_thumbnail_path (RsttoFile *r_file,
+                                RsttoThumbnailFlavor flavor)
+ {
+diff --git a/src/file.h b/src/file.h
+index bba674cb..9006e5a2 100644
+--- a/src/file.h
++++ b/src/file.h
+@@ -127,6 +127,10 @@ const GdkPixbuf *
+ rstto_file_get_thumbnail (RsttoFile *r_file,
+                           RsttoThumbnailSize size);
+ 
++const gchar *
++rstto_file_get_thumbnail_path (RsttoFile *r_file,
++                               RsttoThumbnailFlavor flavor);
++
+ guint64
+ rstto_file_get_modified_time (RsttoFile *r_file);
+ 
+diff --git a/src/thumbnailer.c b/src/thumbnailer.c
+index 59930309..6d514130 100644
+--- a/src/thumbnailer.c
++++ b/src/thumbnailer.c
+@@ -74,6 +74,10 @@ struct _RsttoThumbnailerPrivate
+     guint                request_timer_ids[RSTTO_THUMBNAIL_FLAVOR_COUNT];
+ 
+     gboolean             show_missing_thumbnailer_error;
++
++    RsttoThumbnailFlavor current_flavor;
++    guint substitute_signal_id;
++    gboolean signals_enabled;
+ };
+ 
+ 
+@@ -118,6 +122,10 @@ rstto_thumbnailer_init (RsttoThumbnailer *thumbnailer)
+         g_signal_connect (thumbnailer->priv->proxy, "finished",
+                           G_CALLBACK (cb_rstto_thumbnailer_request_finished), thumbnailer);
+     }
++
++    thumbnailer->priv->current_flavor = RSTTO_THUMBNAIL_FLAVOR_NORMAL;
++    thumbnailer->priv->substitute_signal_id = 0;
++    thumbnailer->priv->signals_enabled = FALSE;
+ }
+ 
+ 
+@@ -240,6 +248,38 @@ rstto_thumbnailer_get_timer_flavor (RsttoThumbnailer *thumbnailer)
+     return RSTTO_THUMBNAIL_FLAVOR_NORMAL;
+ }
+ 
++static gboolean
++rstto_thumbnailer_substitute_signal (gpointer user_data)
++{
++    RsttoThumbnailer *thumbnailer = user_data;
++    RsttoThumbnailFlavor flavor = thumbnailer->priv->current_flavor;
++    guint n = g_slist_length (thumbnailer->priv->in_process_queues[flavor]);
++    const gchar *uris[n + 1];
++    gint i = 0;
++
++    if (thumbnailer->priv->handles[flavor] == NULL)
++    {
++        thumbnailer->priv->substitute_signal_id = 0;
++        return FALSE;
++    }
++
++    for (GSList *iter = thumbnailer->priv->in_process_queues[flavor]; iter != NULL; iter = iter->next)
++        if (rstto_file_get_thumbnail_path (iter->data, flavor) != NULL)
++            uris[i++] = rstto_file_get_uri (iter->data);
++
++    uris[i] = NULL;
++    cb_rstto_thumbnailer_thumbnail_ready (NULL, GPOINTER_TO_UINT (thumbnailer->priv->handles[flavor]->data),
++                                          uris, user_data);
++
++    if (thumbnailer->priv->in_process_queues[flavor] == NULL)
++    {
++        thumbnailer->priv->substitute_signal_id = 0;
++        return FALSE;
++    }
++
++    return TRUE;
++}
++
+ static gboolean
+ rstto_thumbnailer_queue_request_timer (gpointer user_data)
+ {
+@@ -268,6 +308,15 @@ rstto_thumbnailer_queue_request_timer (gpointer user_data)
+         tumbler_thumbnailer1_call_dequeue_sync (thumbnailer->priv->proxy,
+                                                 GPOINTER_TO_UINT (iter->data), NULL, NULL);
+ 
++    if (! thumbnailer->priv->signals_enabled)
++    {
++        if (thumbnailer->priv->substitute_signal_id != 0)
++            REMOVE_SOURCE (thumbnailer->priv->substitute_signal_id);
++
++        g_slist_free (thumbnailer->priv->handles[flavor]);
++        thumbnailer->priv->handles[flavor] = NULL;
++    }
++
+     /* handle current request, whose size doesn't exceed the number of visible items */
+     for (iter = thumbnailer->priv->queues[flavor], i = 0; iter != NULL; iter = iter->next)
+     {
+@@ -364,9 +413,19 @@ rstto_thumbnailer_queue_request_timer (gpointer user_data)
+         /* TOOO: Nice cleanup */
+     }
+     else
++    {
+         thumbnailer->priv->handles[flavor] =
+             g_slist_prepend (thumbnailer->priv->handles[flavor], GUINT_TO_POINTER (handle));
+ 
++        if (! thumbnailer->priv->signals_enabled)
++        {
++            thumbnailer->priv->current_flavor = flavor;
++            thumbnailer->priv->substitute_signal_id =
++                g_timeout_add (500, rstto_thumbnailer_substitute_signal,
++                               rstto_util_source_autoremove (thumbnailer));
++        }
++    }
++
+     g_free (uris);
+     g_free (mimetypes);
+ 
+@@ -469,6 +528,8 @@ cb_rstto_thumbnailer_request_finished (TumblerThumbnailer1 *proxy,
+ {
+     RsttoThumbnailer *thumbnailer = data;
+ 
++    thumbnailer->priv->signals_enabled = TRUE;
++
+     for (gint n = 0; n < RSTTO_THUMBNAIL_FLAVOR_COUNT; n++)
+         if (g_slist_find (thumbnailer->priv->handles[n], GUINT_TO_POINTER (handle)))
+         {
+-- 
+2.34.1
+

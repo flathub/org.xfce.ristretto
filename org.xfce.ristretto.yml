@@ -72,6 +72,7 @@ modules:
     config-opts:
       - --enable-maintainer-mode
       - --disable-debug
+      - XFCONF_SERVICE_NAME_PREFIX=org.xfce.ristretto
     sources:
       - type: git
         url: https://gitlab.xfce.org/xfce/xfconf.git
@@ -83,7 +84,9 @@ modules:
           stable-only: true
           tag-template: xfconf-$version
       - type: patch
-        path: Rename-org.xfce.Xfconf-to-org.xfce.ristretto.Xfconf.patch
+        path: patches/Xfconf-Allow-to-choose-an-alternative-service-name-prefix.patch
+      - type: patch
+        path: patches/Add-a-lifecycle-manager-to-xfconfd.patch
 
   - name: libxfce4ui
     cleanup:
@@ -155,7 +158,7 @@ modules:
           timestamp-query: .published_at
       # see https://github.com/flathub/org.gimp.GIMP/blob/master/org.gimp.GIMP.json
       - type: patch
-        path: libwmf-autoheader.patch
+        path: patches/libwmf-autoheader.patch
     modules:
       - name: freetype
         buildsystem: meson

@@ -117,7 +117,8 @@ modules:
           type: json
           url: https://api.github.com/repos/strukturag/libheif/releases/latest
           version-query: .tag_name | sub("^v"; "")
-          url-query: .assets | map(select(.name=="libheif-\($version).tar.gz")) | first | .browser_download_url
+          url-query: .assets | map(select(.name=="libheif-\($version).tar.gz")) |
+            first | .browser_download_url
       - type: shell
         commands:
           - sed -i 's|DESTINATION ${GDKPIXBUF2_MODULE_DIR}|DESTINATION /app/lib/gdk-pixbuf-2.0/2.10.0/loaders|'
@@ -138,7 +139,8 @@ modules:
               type: json
               url: https://api.github.com/repos/strukturag/libde265/releases/latest
               version-query: .tag_name | sub("^v"; "")
-              url-query: .assets | map(select(.name=="libde265-\($version).tar.gz")) | first | .browser_download_url
+              url-query: .assets | map(select(.name=="libde265-\($version).tar.gz"))
+                | first | .browser_download_url
 
   - name: libwmf
     cleanup:
@@ -252,8 +254,8 @@ modules:
       - --disable-debug
     sources:
       - type: archive
-        url: https://archive.xfce.org/src/apps/ristretto/0.12/ristretto-0.12.1.tar.bz2
-        sha256: 13853f9ca18466a8e4788e92c7bde3388a93e8340283568f5dee1a9396ffd7ee
+        url: https://archive.xfce.org/src/apps/ristretto/0.12/ristretto-0.12.2.tar.bz2
+        sha256: 0eee869922ec00a253dafa446c2aad2a2f98e07e1db7262e8337ce9ec2dad969
         x-checker-data:
           type: anitya
           project-id: 8365

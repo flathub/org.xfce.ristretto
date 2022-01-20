@@ -109,13 +109,14 @@ modules:
     buildsystem: cmake-ninja
     sources:
       - type: archive
-        url: https://github.com/strukturag/libheif/releases/download/v1.12.0/libheif-1.12.0.tar.gz
-        sha256: e1ac2abb354fdc8ccdca71363ebad7503ad731c84022cf460837f0839e171718
+        url: https://github.com/strukturag/libheif/releases/download/v1.11.0/libheif-1.11.0.tar.gz
+        sha256: c550938f56ff6dac83702251a143f87cb3a6c71a50d8723955290832d9960913
         x-checker-data:
           type: json
           url: https://api.github.com/repos/strukturag/libheif/releases/latest
           version-query: .tag_name | sub("^v"; "")
-          url-query: .assets | map(select(.name=="libheif-\($version).tar.gz")) | first | .browser_download_url
+          url-query: .assets | map(select(.name=="libheif-\($version).tar.gz")) |
+            first | .browser_download_url
       - type: shell
         commands:
           - sed -i 's|DESTINATION ${GDKPIXBUF2_MODULE_DIR}|DESTINATION /app/lib/gdk-pixbuf-2.0/2.10.0/loaders|'
@@ -136,7 +137,8 @@ modules:
               type: json
               url: https://api.github.com/repos/strukturag/libde265/releases/latest
               version-query: .tag_name | sub("^v"; "")
-              url-query: .assets | map(select(.name=="libde265-\($version).tar.gz")) | first | .browser_download_url
+              url-query: .assets | map(select(.name=="libde265-\($version).tar.gz"))
+                | first | .browser_download_url
 
   - name: libwmf
     cleanup:

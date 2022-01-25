@@ -11,6 +11,10 @@ finish-args:
   # the open dialog is native, but we still need this to open files via the command line
   # and drag and drop, and to delete files
   - --filesystem=host
+  # FIXME: necessary for Tumbler to emit signals, see
+  # https://github.com/flathub/flathub/issues/2770
+  # https://github.com/flathub/org.xfce.ristretto/pull/7
+  - --socket=session-bus
   # FIXME: necessary for the property dialog, but not sufficient (there is a fallback):
   # GDBus.Error:org.gtk.GDBus.UnmappedGError.Quark._g_2dfile_2derror_2dquark.Code24: Failed to open display ":99.0"
   - --talk-name=org.xfce.FileManager
@@ -292,8 +296,3 @@ modules:
           project-id: 8365
           stable-only: true
           url-template: https://archive.xfce.org/src/apps/ristretto/$major.$minor/ristretto-$version.tar.bz2
-      # FIXME: while waiting for Tumbler to be able to emit signals, see
-      # https://github.com/flathub/flathub/issues/2770
-      # https://github.com/flathub/org.xfce.ristretto/pull/7
-      - type: patch
-        path: patches/Emit-signals-manually-instead-of-Tumbler.patch

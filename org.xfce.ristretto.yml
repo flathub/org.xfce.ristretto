@@ -115,7 +115,8 @@ modules:
           type: json
           url: https://api.github.com/repos/strukturag/libheif/releases/latest
           version-query: .tag_name | sub("^v"; "")
-          url-query: .assets | map(select(.name=="libheif-\($version).tar.gz")) | first | .browser_download_url
+          url-query: .assets | map(select(.name=="libheif-\($version).tar.gz")) |
+            first | .browser_download_url
       - type: shell
         commands:
           - sed -i 's|DESTINATION ${GDKPIXBUF2_MODULE_DIR}|DESTINATION /app/lib/gdk-pixbuf-2.0/2.10.0/loaders|'
@@ -136,7 +137,8 @@ modules:
               type: json
               url: https://api.github.com/repos/strukturag/libde265/releases/latest
               version-query: .tag_name | sub("^v"; "")
-              url-query: .assets | map(select(.name=="libde265-\($version).tar.gz")) | first | .browser_download_url
+              url-query: .assets | map(select(.name=="libde265-\($version).tar.gz"))
+                | first | .browser_download_url
 
   - name: libwmf
     cleanup:
@@ -176,8 +178,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/aruiz/webp-pixbuf-loader.git
-        tag: 0.0.3
-        commit: ffddc060497ee11d6cc573dae01a528b357b91ec
+        tag: 0.0.4
+        commit: 4b11406bdfb0dc813f552dba0bac9abb3fec8135
         x-checker-data:
           type: json
           url: https://api.github.com/repos/aruiz/webp-pixbuf-loader/releases/latest

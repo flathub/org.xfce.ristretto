@@ -115,17 +115,13 @@ modules:
     sources:
       - type: git
         url: https://github.com/hfiguiere/libopenraw.git
-        tag: libopenraw-0.3.0
-        commit: a512576c73882f8fe67568dc21376dc9b14fc3e6
+        tag: libopenraw-0.3.1
+        commit: ebe6e5b21f4df6906eb552e1c524597da276bde4
         x-checker-data:
           type: anitya
           project-id: 7980
           stable-only: true
           tag-template: libopenraw-$version
-      - type: patch
-        path: patches/Update-libopenraw-gnome-0.3.pc.in.patch
-      - type: patch
-        path: patches/Issue-6-Fix-build-on-gcc-11.patch
       # See https://gitlab.freedesktop.org/libopenraw/libopenraw/-/issues/9
       # Necessary in this context, to make the pixbuf loader install in /app/lib
       - type: patch

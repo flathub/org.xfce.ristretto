@@ -221,8 +221,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/aruiz/webp-pixbuf-loader.git
-        tag: 0.0.4
-        commit: 4b11406bdfb0dc813f552dba0bac9abb3fec8135
+        tag: 0.0.5
+        commit: acc6c51027ded81e7b8533d73e75bb9246a9e138
         x-checker-data:
           type: json
           url: https://api.github.com/repos/aruiz/webp-pixbuf-loader/releases/latest

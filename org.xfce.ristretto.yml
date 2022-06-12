@@ -268,7 +268,6 @@ modules:
     post-install:
       - sed -i '/^SystemdService=/d' /app/share/dbus-1/services/org.xfce.ristretto.*.service
     config-opts:
-      - --enable-maintainer-mode
       - --disable-debug
       - --disable-cover-thumbnailer
       - --disable-font-thumbnailer
@@ -279,18 +278,15 @@ modules:
       - --disable-gepub-thumbnailer
       - TUMBLER_SERVICE_NAME_PREFIX=org.xfce.ristretto
     sources:
-      - type: git
-        url: https://gitlab.xfce.org/xfce/tumbler.git
-        tag: tumbler-4.17.0
-        commit: 8efa52bd31f96351d1cce2c7cddbb6302679c96a
+      - type: archive
+        url: https://archive.xfce.org/src/xfce/tumbler/4.17/tumbler-4.17.1.tar.bz2
+        sha256: aa02a4b240ca50c1a58eaebfa8e29ef496e42ce503e85c2eb80890b921d5cf97
         x-checker-data:
           type: anitya
           project-id: 5014
           # to be reactivated when Tumbler goes to 4.18
           #stable-only: true
-          tag-template: tumbler-$version
-      - type: patch
-        path: patches/Tumbler-Allow-to-choose-an-alternative-service-name-prefix.patch
+          url-template: https://archive.xfce.org/src/xfce/tumbler/$major.$minor/tumbler-$version.tar.bz2
 
   - name: ristretto
     config-opts:

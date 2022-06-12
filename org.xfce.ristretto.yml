@@ -281,8 +281,8 @@ modules:
     sources:
       - type: git
         url: https://gitlab.xfce.org/xfce/tumbler.git
-        tag: tumbler-4.17.0
-        commit: 8efa52bd31f96351d1cce2c7cddbb6302679c96a
+        tag: tumbler-4.17.1
+        commit: 273c2e1db41ca0ff2e5744e969aeb7b02d3c561f
         x-checker-data:
           type: anitya
           project-id: 5014

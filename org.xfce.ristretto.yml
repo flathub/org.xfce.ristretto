@@ -58,8 +58,8 @@ modules:
       - --disable-debug
     sources:
       - type: archive
-        url: https://archive.xfce.org/src/xfce/libxfce4util/4.17/libxfce4util-4.17.2.tar.bz2
-        sha256: cf5f4095ffa8ebe3d819ac779768cb75c567a85d5a508a4c4713258c1bd0fab7
+        url: https://archive.xfce.org/src/xfce/libxfce4util/4.16/libxfce4util-4.16.0.tar.bz2
+        sha256: 60598d745d1fc81ff5ad3cecc3a8d1b85990dd22023e7743f55abd87d8b55b83
         x-checker-data:
           type: anitya
           project-id: 232001
@@ -279,8 +279,8 @@ modules:
       - TUMBLER_SERVICE_NAME_PREFIX=org.xfce.ristretto
     sources:
       - type: archive
-        url: https://archive.xfce.org/src/xfce/tumbler/4.17/tumbler-4.17.2.tar.bz2
-        sha256: ebcd4c258459721c7a2a3d226cf4afd5e3387b6e1081a056f8425463015e9515
+        url: https://archive.xfce.org/src/xfce/tumbler/4.16/tumbler-4.16.0.tar.bz2
+        sha256: 9b0b7fed0c64041733d490b1b307297984629d0dd85369749617a8766850af66
         x-checker-data:
           type: anitya
           project-id: 5014

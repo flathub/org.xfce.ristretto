@@ -47,7 +47,6 @@ modules:
         x-checker-data:
           type: anitya
           project-id: 15888
-          stable-only: true
           url-template: https://archive.xfce.org/src/xfce/xfce4-dev-tools/$major.$minor/xfce4-dev-tools-$version.tar.bz2
 
   # mandatory dependencies
@@ -63,8 +62,8 @@ modules:
         x-checker-data:
           type: anitya
           project-id: 232001
-          # to be reactivated when Tumbler goes to 4.18
-          #stable-only: true
+          # to be removed when Tumbler goes to 4.18
+          stable-only: false
           url-template: https://archive.xfce.org/src/xfce/libxfce4util/$major.$minor/libxfce4util-$version.tar.bz2
 
   - name: xfconf
@@ -83,7 +82,6 @@ modules:
         x-checker-data:
           type: anitya
           project-id: 14854
-          stable-only: true
           tag-template: xfconf-$version
       - type: patch
         path: patches/Xfconf-Allow-to-choose-an-alternative-service-name-prefix.patch
@@ -105,7 +103,6 @@ modules:
         x-checker-data:
           type: anitya
           project-id: 232000
-          stable-only: true
           url-template: https://archive.xfce.org/src/xfce/libxfce4ui/$major.$minor/libxfce4ui-$version.tar.bz2
 
   # optional dependencies for gdk-pixbuf
@@ -120,7 +117,6 @@ modules:
         x-checker-data:
           type: anitya
           project-id: 7980
-          stable-only: true
           tag-template: libopenraw-$version
       # See https://gitlab.freedesktop.org/libopenraw/libopenraw/-/issues/9
       # Necessary in this context, to make the pixbuf loader install in /app/lib
@@ -144,7 +140,6 @@ modules:
             x-checker-data:
               type: anitya
               project-id: 6845
-              stable-only: true
               url-template: https://boostorg.jfrog.io/artifactory/main/release/$version/source/boost_${version0}_${version1}_$version2.tar.gz
 
   - name: libheif
@@ -211,7 +206,6 @@ modules:
             x-checker-data:
               type: anitya
               project-id: 854
-              stable-only: true
               url-template: https://download-mirror.savannah.gnu.org/releases/freetype/freetype-$version.tar.xz
 
   - name: webp-pixbuf-loader
@@ -242,7 +236,6 @@ modules:
         x-checker-data:
           type: anitya
           project-id: 178015
-          stable-only: true
           tag-template: v$version
       - type: shell
         commands:
@@ -284,8 +277,8 @@ modules:
         x-checker-data:
           type: anitya
           project-id: 5014
-          # to be reactivated when Tumbler goes to 4.18
-          #stable-only: true
+          # to be removed when Tumbler goes to 4.18
+          stable-only: false
           url-template: https://archive.xfce.org/src/xfce/tumbler/$major.$minor/tumbler-$version.tar.bz2
 
   - name: ristretto
@@ -299,5 +292,4 @@ modules:
         x-checker-data:
           type: anitya
           project-id: 8365
-          stable-only: true
           url-template: https://archive.xfce.org/src/apps/ristretto/$major.$minor/ristretto-$version.tar.bz2

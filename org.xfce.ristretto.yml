@@ -8,7 +8,7 @@ finish-args:
   - --share=ipc
   - --socket=fallback-x11
   - --socket=wayland
-  # the open dialog is native, but we still need this to open files via the command line
+  # the open dialog is native, but we still need this to open files via the command lin
   # and drag and drop, and to delete files
   - --filesystem=host
   # FIXME: necessary for Tumbler to emit signals, see

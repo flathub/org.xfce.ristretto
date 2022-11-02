@@ -71,22 +71,18 @@ modules:
       - /bin
       - /share/bash-completion
     config-opts:
-      - --enable-maintainer-mode
       - --disable-debug
       - XFCONF_SERVICE_NAME_PREFIX=org.xfce.ristretto
     sources:
-      - type: git
-        url: https://gitlab.xfce.org/xfce/xfconf.git
-        tag: xfconf-4.16.0
-        commit: f05f028b840b465a41deef0fae6f50a885222e62
+      - type: archive
+        url: https://archive.xfce.org/src/xfce/xfconf/4.17/xfconf-4.17.0.tar.bz2
+        sha256: 9f568a3f5365dcd44fad4a165a98c6483efb3f61dc44933235f048cab0157d5e
         x-checker-data:
           type: anitya
           project-id: 14854
-          tag-template: xfconf-$version
-      - type: patch
-        path: patches/Xfconf-Allow-to-choose-an-alternative-service-name-prefix.patch
-      - type: patch
-        path: patches/Add-a-lifecycle-manager-to-xfconfd.patch
+          # to be removed when Tumbler goes to 4.18
+          stable-only: false
+          url-template: https://archive.xfce.org/src/xfce/xfconf/$major.$minor/xfconf-$version.tar.bz2
 
   - name: libxfce4ui
     cleanup:

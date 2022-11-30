@@ -75,8 +75,8 @@ modules:
       - XFCONF_SERVICE_NAME_PREFIX=org.xfce.ristretto
     sources:
       - type: archive
-        url: https://archive.xfce.org/src/xfce/xfconf/4.17/xfconf-4.17.1.tar.bz2
-        sha256: 8f30b249b46d96a9fad3abc7d0b0318ec28c1e8362ce3b280cefcf37ee5135f2
+        url: https://archive.xfce.org/src/xfce/xfconf/4.17/xfconf-4.17.2.tar.bz2
+        sha256: e4eefa03cdd3672f928e80bf86f68ba9e9ea3e1ee8208f8d964610c416ee8db0
         x-checker-data:
           type: anitya
           project-id: 14854

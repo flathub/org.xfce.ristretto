@@ -57,8 +57,8 @@ modules:
       - --disable-debug
     sources:
       - type: archive
-        url: https://archive.xfce.org/src/xfce/libxfce4util/4.17/libxfce4util-4.17.3.tar.bz2
-        sha256: 27cbe4051f6443a124a967700953cd3580c14645596dc28a82cd4e5fae388fc2
+        url: https://archive.xfce.org/src/xfce/libxfce4util/4.17/libxfce4util-4.17.4.tar.bz2
+        sha256: bc75cb211994a816c7673618fdbff37ead7a643181ea6adb138fe004ae9d02b4
         x-checker-data:
           type: anitya
           project-id: 232001

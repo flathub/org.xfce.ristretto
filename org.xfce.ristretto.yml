@@ -37,18 +37,6 @@ modules:
   # build-time dependencies
   - shared-modules/intltool/intltool-0.51.json
 
-  - name: xfce4-dev-tools
-    cleanup:
-      - '*'
-    sources:
-      - type: archive
-        url: https://archive.xfce.org/src/xfce/xfce4-dev-tools/4.16/xfce4-dev-tools-4.16.0.tar.bz2
-        sha256: f50b3070e66f3ebdf331744dd1ec5e1af5de333965d491e15ce05545e8eb4f04
-        x-checker-data:
-          type: anitya
-          project-id: 15888
-          url-template: https://archive.xfce.org/src/xfce/xfce4-dev-tools/$major.$minor/xfce4-dev-tools-$version.tar.bz2
-
   # mandatory dependencies
   - name: libxfce4util
     cleanup:

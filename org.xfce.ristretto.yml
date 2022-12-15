@@ -62,8 +62,6 @@ modules:
         x-checker-data:
           type: anitya
           project-id: 232001
-          # to be removed when Tumbler goes to 4.18
-          stable-only: false
           url-template: https://archive.xfce.org/src/xfce/libxfce4util/$major.$minor/libxfce4util-$version.tar.bz2
 
   - name: xfconf
@@ -80,8 +78,6 @@ modules:
         x-checker-data:
           type: anitya
           project-id: 14854
-          # to be removed when Tumbler goes to 4.18
-          stable-only: false
           url-template: https://archive.xfce.org/src/xfce/xfconf/$major.$minor/xfconf-$version.tar.bz2
 
   - name: libxfce4ui
@@ -273,8 +269,6 @@ modules:
         x-checker-data:
           type: anitya
           project-id: 5014
-          # to be removed when Tumbler goes to 4.18
-          stable-only: false
           url-template: https://archive.xfce.org/src/xfce/tumbler/$major.$minor/tumbler-$version.tar.bz2
 
   - name: ristretto

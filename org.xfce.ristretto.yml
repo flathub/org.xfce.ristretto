@@ -263,8 +263,8 @@ modules:
       - TUMBLER_SERVICE_NAME_PREFIX=org.xfce.ristretto
     sources:
       - type: archive
-        url: https://archive.xfce.org/src/apps/ristretto/0.12/ristretto-0.12.4.tar.bz2
-        sha256: e4005c9743e5ecf329fb93d1171746c4250aecb2bd411dcf8d8e9cb904e87930
+        url: https://archive.xfce.org/src/apps/ristretto/0.13/ristretto-0.13.0.tar.bz2
+        sha256: 596676b41daada390c8d83e5bb83be6832a260f4bf0dbcc651ac0b68c0f4e301
         x-checker-data:
           type: anitya
           project-id: 8365

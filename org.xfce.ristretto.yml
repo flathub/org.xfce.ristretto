@@ -124,8 +124,8 @@ modules:
     buildsystem: cmake-ninja
     sources:
       - type: archive
-        url: https://github.com/strukturag/libheif/releases/download/v1.14.2/libheif-1.14.2.tar.gz
-        sha256: d016905e247d6952cd7ee4f9b90957350b6a6caa466bc76fdfe6eb302b6d088c
+        url: https://github.com/strukturag/libheif/releases/download/v1.15.0/libheif-1.15.0.tar.gz
+        sha256: 434d5672ff1576b033bf313ce8505c7d2561f9e66afc4434c5bf380273546351
         x-checker-data:
           type: json
           url: https://api.github.com/repos/strukturag/libheif/releases/latest

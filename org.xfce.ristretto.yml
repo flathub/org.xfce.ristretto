@@ -76,8 +76,8 @@ modules:
       - --disable-debug
     sources:
       - type: archive
-        url: https://archive.xfce.org/src/xfce/libxfce4ui/4.18/libxfce4ui-4.18.2.tar.bz2
-        sha256: ad602d0427e6c40c3eb53db393c607151a039aec58f1f197712c169c5fe49407
+        url: https://archive.xfce.org/src/xfce/libxfce4ui/4.18/libxfce4ui-4.18.3.tar.bz2
+        sha256: afa3a46eeed3ab612d2f7e1308edaf5819f6c33ccc16c13080efabd58f010abd
         x-checker-data:
           type: anitya
           project-id: 232000
@@ -193,8 +193,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/aruiz/webp-pixbuf-loader.git
-        tag: 0.2.2
-        commit: 36b3df08af61887f3558e4d783e8710627a7a4b7
+        tag: 0.2.3
+        commit: e11fb34385c94255f8aec3f9c731a1310be89df6
         x-checker-data:
           type: json
           url: https://api.github.com/repos/aruiz/webp-pixbuf-loader/releases/latest

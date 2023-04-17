@@ -43,8 +43,8 @@ modules:
       - --disable-debug
     sources:
       - type: archive
-        url: https://archive.xfce.org/src/xfce/libxfce4util/4.18/libxfce4util-4.18.1.tar.bz2
-        sha256: 8a52063a5adc66252238cad9ee6997909b59983ed21c77eb83c5e67829d1b01f
+        url: https://archive.xfce.org/src/xfce/libxfce4util/4.19/libxfce4util-4.19.0.tar.bz2
+        sha256: 1784bced26fa8bdf5104a56f988e848ac25952032603887dc7b95c64b4d35326
         x-checker-data:
           type: anitya
           project-id: 232001
@@ -59,8 +59,8 @@ modules:
       - XFCONF_SERVICE_NAME_PREFIX=org.xfce.ristretto
     sources:
       - type: archive
-        url: https://archive.xfce.org/src/xfce/xfconf/4.18/xfconf-4.18.0.tar.bz2
-        sha256: 2e8c50160bf800a807aea094fc9dad81f9f361f42db56607508ed5b4855d2906
+        url: https://archive.xfce.org/src/xfce/xfconf/4.19/xfconf-4.19.0.tar.bz2
+        sha256: b7b502f7c8891807d666bb3b5dc33b50df9fdda9fd41e2341bf185b5f2579183
         x-checker-data:
           type: anitya
           project-id: 14854
@@ -163,8 +163,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/caolanm/libwmf.git
-        tag: v0.2.12
-        commit: 5b7af9cf44c688770f174533dbe14c8953ec39cd
+        tag: v0.2.13
+        commit: 9e4737f2293c0d127bda92e5b01896df10571424
         x-checker-data:
           type: json
           url: https://api.github.com/repos/caolanm/libwmf/releases/latest
@@ -250,8 +250,8 @@ modules:
       - TUMBLER_SERVICE_NAME_PREFIX=org.xfce.ristretto
     sources:
       - type: archive
-        url: https://archive.xfce.org/src/xfce/tumbler/4.18/tumbler-4.18.0.tar.bz2
-        sha256: 4087f3af4ef31271d3f315421a2f1fe67e4fda7ad60bbab1f073627914dfcf00
+        url: https://archive.xfce.org/src/xfce/tumbler/4.19/tumbler-4.19.0.tar.bz2
+        sha256: c03eaf5618e9eba5500fc6cdf6285cef77c153a11123134ca5e635104ea7e5eb
         x-checker-data:
           type: anitya
           project-id: 5014

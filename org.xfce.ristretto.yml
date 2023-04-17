@@ -171,9 +171,6 @@ modules:
           tag-query: .tag_name
           version-query: $tag | sub("^v"; "")
           timestamp-query: .published_at
-      # see https://github.com/flathub/org.gimp.GIMP/blob/master/org.gimp.GIMP.json
-      - type: patch
-        path: patches/libwmf-autoheader.patch
     modules:
       - name: freetype
         buildsystem: meson

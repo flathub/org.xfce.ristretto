@@ -59,8 +59,8 @@ modules:
       - XFCONF_SERVICE_NAME_PREFIX=org.xfce.ristretto
     sources:
       - type: archive
-        url: https://archive.xfce.org/src/xfce/xfconf/4.18/xfconf-4.18.0.tar.bz2
-        sha256: 2e8c50160bf800a807aea094fc9dad81f9f361f42db56607508ed5b4855d2906
+        url: https://archive.xfce.org/src/xfce/xfconf/4.18/xfconf-4.18.1.tar.bz2
+        sha256: d9714751bbcfdc5a59340da6ef8ddfc0807221587b962d907f97dc0a8a002257
         x-checker-data:
           type: anitya
           project-id: 14854
@@ -247,8 +247,8 @@ modules:
       - TUMBLER_SERVICE_NAME_PREFIX=org.xfce.ristretto
     sources:
       - type: archive
-        url: https://archive.xfce.org/src/xfce/tumbler/4.18/tumbler-4.18.0.tar.bz2
-        sha256: 4087f3af4ef31271d3f315421a2f1fe67e4fda7ad60bbab1f073627914dfcf00
+        url: https://archive.xfce.org/src/xfce/tumbler/4.18/tumbler-4.18.1.tar.bz2
+        sha256: ff61981a9c0af5fec768d4f1552bd63948a64b2f4db1c2e3d93c31c19dc563a0
         x-checker-data:
           type: anitya
           project-id: 5014

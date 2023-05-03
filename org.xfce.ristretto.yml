@@ -89,7 +89,7 @@ modules:
       - --disable-cr3
     sources:
       - type: git
-        url: https://github.com/freedesktop/libopenraw.git
+        url: https://gitlab.freedesktop.org/libopenraw/libopenraw.git
         tag: libopenraw-0.3.2
         commit: 75c279918c4238333892c20599445143472deb7d
         x-checker-data:

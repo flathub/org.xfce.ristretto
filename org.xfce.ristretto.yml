@@ -106,6 +106,8 @@ modules:
         path: patches/Make-CR3-support-optional.patch
     modules:
       - name: boost
+        cleanup:
+          - '*'
         buildsystem: simple
         build-commands:
           - ./bootstrap.sh --prefix=/app --with-libraries=system --with-libraries=test

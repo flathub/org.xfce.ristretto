@@ -5,21 +5,21 @@ Subject: [PATCH 1/2] build: Honor installation prefix also for the pixbuf
  loader
 
 ---
- configure.ac | 1 +
+ configure | 1 +
  1 file changed, 1 insertion(+)
 
-diff --git a/configure.ac b/configure.ac
-index 49ff7f4..b9bff92 100644
---- a/configure.ac
-+++ b/configure.ac
-@@ -150,6 +150,7 @@ if test x$enable_gnome = xyes ; then
-       PKG_CHECK_MODULES(LIBGDKPIXBUF, gdk-pixbuf-2.0 >= $LIBGDKPIXBUF_REQUIRED,
-                      [AC_DEFINE(HAVE_LIBGDKPIXBUF, 1, [Define to 1 to enable libgdkpixbuf support])
+diff --git a/configure.orig b/configure
+index 18e0f83..3d3a384 100755
+--- a/configure
++++ b/configure
+@@ -18908,6 +18908,7 @@ printf "%s\n" "yes" >&6; }
+ printf "%s\n" "#define HAVE_LIBGDKPIXBUF 1" >>confdefs.h
+ 
  		      GDK_PIXBUF_DIR=`$PKG_CONFIG --variable=gdk_pixbuf_moduledir gdk-pixbuf-2.0`
 +		      GDK_PIXBUF_DIR=$libdir${GDK_PIXBUF_DIR#$($PKG_CONFIG --variable=libdir gdk-pixbuf-2.0)}
- 			dnl This is because the variable is only defined on recent gdk-pixbuf. 
- 			dnl Revert to the old method otherwise. (https://bugs.freedesktop.org/show_bug.cgi?id=30013)
- 			if test -z "$GDK_PIXBUF_DIR" ; then
+ 									if test -z "$GDK_PIXBUF_DIR" ; then
+ 				GTK_VERSION=`$PKG_CONFIG --variable=gtk_binary_version gtk+-2.0`
+ 				GDK_PIXBUF_DIR="$libdir/gtk-2.0/$GTK_VERSION/loaders"
 -- 
 2.35.1
 

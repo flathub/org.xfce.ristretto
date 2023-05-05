@@ -85,8 +85,6 @@ modules:
 
   # optional dependencies for gdk-pixbuf
   - name: libopenraw
-    config-opts:
-      - --disable-cr3
     sources:
       - type: archive
         url: https://libopenraw.freedesktop.org/download/libopenraw-0.3.5.tar.bz2
@@ -99,10 +97,6 @@ modules:
       # Necessary in this context, to make the pixbuf loader install in /app/lib
       - type: patch
         path: patches/build-Honor-installation-prefix-also-for-the-pixbuf-.patch
-      # CR3 support requires Rust, which is a pain to build in a Flatpak context. Also, it
-      # does not affect the pixbuf loader, which is what we care about for Ristretto.
-      - type: patch
-        path: patches/Make-CR3-support-optional.patch
     modules:
       - name: boost
         cleanup:
@@ -120,6 +114,19 @@ modules:
               type: anitya
               project-id: 6845
               url-template: https://boostorg.jfrog.io/artifactory/main/release/$version/source/boost_${version0}_${version1}_$version2.tar.gz
+      - name: rust
+        cleanup:
+          - '*'
+        config-opts:
+          - --enable-local-rust
+        sources:
+          - type: archive
+            url: https://static.rust-lang.org/dist/rustc-1.69.0-src.tar.gz
+            sha256: fb05971867ad6ccabbd3720279f5a94b99f61024923187b56bb5c455fa3cf60f
+            x-checker-data:
+              type: anitya
+              project-id: 7635
+              url-template: https://static.rust-lang.org/dist/rustc-$version-src.tar.gz
 
   - name: libheif
     buildsystem: cmake-ninja

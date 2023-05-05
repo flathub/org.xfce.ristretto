@@ -88,14 +88,13 @@ modules:
     config-opts:
       - --disable-cr3
     sources:
-      - type: git
-        url: https://gitlab.freedesktop.org/libopenraw/libopenraw.git
-        tag: libopenraw-0.3.5
-        commit: d7e5f85da021d26079dd549ff84a9768ea99f10d
+      - type: archive
+        url: https://libopenraw.freedesktop.org/download/libopenraw-0.3.5.tar.bz2
+        sha256: 9a93d92d55066b9d88df84a58f75095654c31dddb92021b47baa0f3f482fb2e7
         x-checker-data:
           type: anitya
           project-id: 7980
-          tag-template: libopenraw-$version
+          url-template: https://libopenraw.freedesktop.org/download/libopenraw-$version.tar.bz2
       # See https://gitlab.freedesktop.org/libopenraw/libopenraw/-/issues/9
       # Necessary in this context, to make the pixbuf loader install in /app/lib
       - type: patch

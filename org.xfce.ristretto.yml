@@ -179,6 +179,9 @@ modules:
           tag-query: .tag_name
           version-query: $tag | sub("^v"; "")
           timestamp-query: .published_at
+      - type: shell
+        commands:
+          - autoreconf -vfi
     modules:
       - name: freetype
         buildsystem: meson

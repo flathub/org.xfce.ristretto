@@ -3,7 +3,8 @@ runtime: org.freedesktop.Platform
 runtime-version: '22.08'
 sdk: org.freedesktop.Sdk
 command: ristretto
-
+sdk-extensions:
+  - org.freedesktop.Sdk.Extension.rust-stable
 finish-args:
   - --share=ipc
   - --socket=fallback-x11
@@ -83,31 +84,26 @@ modules:
           type: anitya
           project-id: 232000
           url-template: https://archive.xfce.org/src/xfce/libxfce4ui/$major.$minor/libxfce4ui-$version.tar.bz2
-    modules:
-      # to be removed when libxfce4ui goes to 4.20
-      - shared-modules/intltool/intltool-0.51.json
 
   # optional dependencies for gdk-pixbuf
   - name: libopenraw
-    config-opts:
-      - --disable-cr3
+    build-options:
+      append-path: /usr/lib/sdk/rust-stable/bin
     sources:
-      - type: git
-        url: https://gitlab.freedesktop.org/libopenraw/libopenraw.git
-        tag: libopenraw-0.3.5
-        commit: d7e5f85da021d26079dd549ff84a9768ea99f10d
+      - type: archive
+        url: https://libopenraw.freedesktop.org/download/libopenraw-0.3.6.tar.xz
+        sha256: 07c1f92272afdeb5792b62ffd38b171626ba67160febd5620d05b0784f3938ec
         x-checker-data:
           type: anitya
           project-id: 7980
-          tag-template: libopenraw-$version
+          url-template: https://libopenraw.freedesktop.org/download/libopenraw-$version.tar.xz
       # See https://gitlab.freedesktop.org/libopenraw/libopenraw/-/issues/9
       # Necessary in this context, to make the pixbuf loader install in /app/lib
       - type: patch
         path: patches/build-Honor-installation-prefix-also-for-the-pixbuf-.patch
-      # CR3 support requires Rust, which is a pain to build in a Flatpak context. Also, it
-      # does not affect the pixbuf loader, which is what we care about for Ristretto.
-      - type: patch
-        path: patches/Make-CR3-support-optional.patch
+      - type: shell
+        commands:
+          - autoreconf -vfi
     modules:
       - name: boost
         cleanup:

@@ -96,8 +96,8 @@ modules:
     sources:
       - type: git
         url: https://gitlab.freedesktop.org/libopenraw/libopenraw.git
-        tag: libopenraw-0.3.5
-        commit: d7e5f85da021d26079dd549ff84a9768ea99f10d
+        tag: libopenraw-0.3.6
+        commit: f3cfeba92ea01f9dc26fc739724f6a9efa5b0641
         x-checker-data:
           type: anitya
           project-id: 7980

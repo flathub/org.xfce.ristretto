@@ -32,6 +32,10 @@ cleanup:
   - /share/gtk-doc
 
 modules:
+  # to be removed when xfconf goes to 4.20
+  # to be removed when libxfce4ui goes to 4.20
+  # to be removed when tumbler goes to 4.20
+  - shared-modules/intltool/intltool-0.51.json
   # mandatory dependencies
   - name: libxfce4util
     cleanup:
@@ -46,9 +50,6 @@ modules:
           type: anitya
           project-id: 232001
           url-template: https://archive.xfce.org/src/xfce/libxfce4util/$major.$minor/libxfce4util-$version.tar.bz2
-    modules:
-      # to be removed when libxfce4util goes to 4.20
-      - shared-modules/intltool/intltool-0.51.json
 
   - name: xfconf
     cleanup:
@@ -65,9 +66,6 @@ modules:
           type: anitya
           project-id: 14854
           url-template: https://archive.xfce.org/src/xfce/xfconf/$major.$minor/xfconf-$version.tar.bz2
-    modules:
-      # to be removed when xfconf goes to 4.20
-      - shared-modules/intltool/intltool-0.51.json
 
   - name: libxfce4ui
     cleanup:
@@ -264,9 +262,6 @@ modules:
           type: anitya
           project-id: 5014
           url-template: https://archive.xfce.org/src/xfce/tumbler/$major.$minor/tumbler-$version.tar.bz2
-    modules:
-      # to be removed when tumbler goes to 4.20
-      - shared-modules/intltool/intltool-0.51.json
 
   - name: ristretto
     config-opts:

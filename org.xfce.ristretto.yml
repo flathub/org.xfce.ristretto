@@ -126,8 +126,8 @@ modules:
     buildsystem: cmake-ninja
     sources:
       - type: archive
-        url: https://github.com/strukturag/libheif/releases/download/v1.17.4/libheif-1.17.4.tar.gz
-        sha256: 3619c092992eb5ccaf7795cbdc8ac70f96ab0f20fc5681fcef6ff5fec027a838
+        url: https://github.com/strukturag/libheif/releases/download/v1.17.5/libheif-1.17.5.tar.gz
+        sha256: 38ab01938ef419dbebb98346dc0b1c8bb503a0449ea61a0e409a988786c2af5b
         x-checker-data:
           type: json
           url: https://api.github.com/repos/strukturag/libheif/releases/latest
@@ -148,8 +148,8 @@ modules:
           - --disable-dec265
         sources:
           - type: archive
-            url: https://github.com/strukturag/libde265/releases/download/v1.0.13/libde265-1.0.13.tar.gz
-            sha256: b921bc90521f28914bbf0c638c436b79831857ca4f7af1f3dd4ce2228bf40cfd
+            url: https://github.com/strukturag/libde265/releases/download/v1.0.14/libde265-1.0.14.tar.gz
+            sha256: 99f46ef77a438be639aa3c5d9632c0670541c5ed5d386524d4199da2d30df28f
             x-checker-data:
               type: json
               url: https://api.github.com/repos/strukturag/libde265/releases/latest

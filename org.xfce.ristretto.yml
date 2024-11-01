@@ -124,6 +124,10 @@ modules:
 
   - name: libheif
     buildsystem: cmake-ninja
+    config-opts:
+      - -DCMAKE_COMPILE_WARNING_AS_ERROR=OFF
+      - -DWITH_OpenH264_DECODER=OFF
+      - -DENABLE_PLUGIN_LOADING=OFF
     sources:
       - type: archive
         url: https://github.com/strukturag/libheif/releases/download/v1.19.1/libheif-1.19.1.tar.gz

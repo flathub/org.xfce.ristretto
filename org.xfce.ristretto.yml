@@ -257,8 +257,8 @@ modules:
       - TUMBLER_SERVICE_NAME_PREFIX=org.xfce.ristretto
     sources:
       - type: archive
-        url: https://archive.xfce.org/src/xfce/tumbler/4.18/tumbler-4.18.2.tar.bz2
-        sha256: b530eec635eac7f898c0d8d3a3ff79d76a145d3bed3e786d54b1ec058132be7a
+        url: https://archive.xfce.org/src/xfce/tumbler/4.20/tumbler-4.20.0.tar.bz2
+        sha256: 74b1647d55926547e98bfac70838ff63c5a84299a5e10c81c38d1fab90e25880
         x-checker-data:
           type: anitya
           project-id: 5014

@@ -45,8 +45,8 @@ modules:
       - --disable-debug
     sources:
       - type: archive
-        url: https://archive.xfce.org/src/xfce/libxfce4util/4.18/libxfce4util-4.18.2.tar.bz2
-        sha256: d9a329182b78f7e2520cd4aafcbb276bbbf162f6a89191676539ad2e3889c353
+        url: https://archive.xfce.org/src/xfce/libxfce4util/4.20/libxfce4util-4.20.0.tar.bz2
+        sha256: 21493f9c9995a282823db93839f6b9f06ae31edb094191ba9acf04d932a2b592
         x-checker-data:
           type: anitya
           project-id: 232001
@@ -61,8 +61,8 @@ modules:
       - XFCONF_SERVICE_NAME_PREFIX=org.xfce.ristretto
     sources:
       - type: archive
-        url: https://archive.xfce.org/src/xfce/xfconf/4.18/xfconf-4.18.3.tar.bz2
-        sha256: c56cc69056f6947b2c60b165ec1e4c2b0acf26a778da5f86c89ffce24d5ebd98
+        url: https://archive.xfce.org/src/xfce/xfconf/4.20/xfconf-4.20.0.tar.bz2
+        sha256: 8bc43c60f1716b13cf35fc899e2a36ea9c6cdc3478a8f051220eef0f53567efd
         x-checker-data:
           type: anitya
           project-id: 14854
@@ -78,8 +78,8 @@ modules:
       - --disable-debug
     sources:
       - type: archive
-        url: https://archive.xfce.org/src/xfce/libxfce4ui/4.18/libxfce4ui-4.18.6.tar.bz2
-        sha256: 77dd99206cc8c6c7f69c269c83c7ee6a037bca9d4a89b1a6d9765e5a09ce30cd
+        url: https://archive.xfce.org/src/xfce/libxfce4ui/4.20/libxfce4ui-4.20.0.tar.bz2
+        sha256: 75e8996984f20375aadecd5c16f5147c211ed0bd26d7861ab0257561eb76eaee
         x-checker-data:
           type: anitya
           project-id: 232000

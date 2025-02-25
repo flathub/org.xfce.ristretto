@@ -212,8 +212,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/AOMediaCodec/libavif.git
-        tag: v1.1.1
-        commit: bb24db03cd99befe09c87b602e36f24d75a980d1
+        tag: v1.2.0
+        commit: a28899ac7df6b211dae7199cb723d8ce2cecff1b
         x-checker-data:
           type: anitya
           project-id: 178015

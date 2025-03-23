@@ -74,8 +74,8 @@ modules:
       - --disable-debug
     sources:
       - type: archive
-        url: https://archive.xfce.org/src/xfce/libxfce4ui/4.20/libxfce4ui-4.20.0.tar.bz2
-        sha256: 75e8996984f20375aadecd5c16f5147c211ed0bd26d7861ab0257561eb76eaee
+        url: https://archive.xfce.org/src/xfce/libxfce4ui/4.20/libxfce4ui-4.20.1.tar.bz2
+        sha256: ec99f0b8f6d7cd4222c8f8e3bca51d144fb240d719829344b354900eb3a07100
         x-checker-data:
           type: anitya
           project-id: 232000

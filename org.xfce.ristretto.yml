@@ -37,8 +37,11 @@ modules:
   - name: libxfce4util
     cleanup:
       - /sbin
+    buildsystem: meson
     config-opts:
-      - --disable-debug
+      - --buildtype=minsize
+      - --auto-features=enabled
+      - -Dvala=disabled
     sources:
       - type: archive
         url: https://archive.xfce.org/src/xfce/libxfce4util/4.20/libxfce4util-4.20.1.tar.bz2
@@ -52,17 +55,21 @@ modules:
     cleanup:
       - /bin
       - /share/bash-completion
+    buildsystem: meson
     config-opts:
-      - --disable-debug
-      - XFCONF_SERVICE_NAME_PREFIX=org.xfce.ristretto
+      - --auto-features=enabled
+      - --buildtype=minsize
+      - -Dvala=disabled
+      - -Dservice-name-prefix=org.xfce.ristretto
     sources:
       - type: archive
-        url: https://archive.xfce.org/src/xfce/xfconf/4.20/xfconf-4.20.0.tar.bz2
-        sha256: 8bc43c60f1716b13cf35fc899e2a36ea9c6cdc3478a8f051220eef0f53567efd
+        url: https://archive.xfce.org/src/xfce/xfconf/4.21/xfconf-4.21.0.tar.xz
+        sha256: 0c2d749cc9109e5c5f2b92687faa20b7136c38ff5873e3b5d3ee53fe4e7cf1d4
         x-checker-data:
           type: anitya
           project-id: 14854
-          url-template: https://archive.xfce.org/src/xfce/xfconf/$major.$minor/xfconf-$version.tar.bz2
+          stable-only: false
+          url-template: https://archive.xfce.org/src/xfce/xfconf/$major.$minor/xfconf-$version.tar.xz
 
   - name: libxfce4ui
     cleanup:
@@ -70,16 +77,29 @@ modules:
       - /etc
       - /share/icons
       - /share/applications
+    buildsystem: meson
     config-opts:
-      - --disable-debug
+      - --auto-features=enabled
+      - --buildtype=minsize
+      - -Dvala=disabled
+      - -Dstartup-notification=disabled
+      - -Dlibgtop=disabled
+      - -Dglade=disabled
     sources:
       - type: archive
-        url: https://archive.xfce.org/src/xfce/libxfce4ui/4.20/libxfce4ui-4.20.1.tar.bz2
-        sha256: ec99f0b8f6d7cd4222c8f8e3bca51d144fb240d719829344b354900eb3a07100
+        url: https://archive.xfce.org/src/xfce/libxfce4ui/4.21/libxfce4ui-4.21.0.tar.xz
+        sha256: dd75ff86b6ac814cf71c66004494394eeab962f5360e8e88fa724fa972b9da7b
+      - type: patch
+        path: patches/0001-meson-build-Define-missing-dependencies-when-libgtop.patch
+      - type: patch
+        path: patches/0001-build-Replace-xdt-csource-with-glib-compile-resource.patch
+      - type: patch
+        path: patches/0002-build-Add-xdt-gen-visibility-to-get-rid-of-autotools.patch
         x-checker-data:
           type: anitya
           project-id: 232000
-          url-template: https://archive.xfce.org/src/xfce/libxfce4ui/$major.$minor/libxfce4ui-$version.tar.bz2
+          stable-only: false
+          url-template: https://archive.xfce.org/src/xfce/libxfce4ui/$major.$minor/libxfce4ui-$version.tar.xz
 
   # optional dependencies for gdk-pixbuf
   - name: libopenraw
@@ -241,24 +261,28 @@ modules:
       - /share/icons
     post-install:
       - sed -i '/^SystemdService=/d' /app/share/dbus-1/services/org.xfce.ristretto.*.service
+    buildsystem: meson
     config-opts:
-      - --disable-debug
-      - --disable-cover-thumbnailer
-      - --disable-font-thumbnailer
-      - --disable-ffmpeg-thumbnailer
-      - --disable-gstreamer-thumbnailer
-      - --disable-odf-thumbnailer
-      - --disable-poppler-thumbnailer
-      - --disable-gepub-thumbnailer
-      - TUMBLER_SERVICE_NAME_PREFIX=org.xfce.ristretto
+      - --buildtype=minsize
+      - --auto-features=enabled
+      - -Dcover-thumbnailer=disabled
+      - -Dfont-thumbnailer=disabled
+      - -Dffmpeg-thumbnailer=disabled
+      - -Dgst-thumbnailer=disabled
+      - -Dodf-thumbnailer=disabled
+      - -Dpoppler-thumbnailer=disabled
+      - -Dgepub-thumbnailer=disabled
+      - -Dservice-name-prefix=org.xfce.ristretto
+      - -Draw-thumbnailer=disabled
     sources:
       - type: archive
-        url: https://archive.xfce.org/src/xfce/tumbler/4.20/tumbler-4.20.0.tar.bz2
-        sha256: 74b1647d55926547e98bfac70838ff63c5a84299a5e10c81c38d1fab90e25880
+        url: https://archive.xfce.org/src/xfce/tumbler/4.21/tumbler-4.21.0.tar.xz
+        sha256: 794b3da6b0665c59dea97dcfe307de0f7f5207b1ce4490b57b379b2571609b35
         x-checker-data:
           type: anitya
           project-id: 5014
-          url-template: https://archive.xfce.org/src/xfce/tumbler/$major.$minor/tumbler-$version.tar.bz2
+          stable-only: false
+          url-template: https://archive.xfce.org/src/xfce/tumbler/$major.$minor/tumbler-$version.tar.xz
 
   - name: ristretto
     config-opts:

@@ -285,14 +285,16 @@ modules:
           url-template: https://archive.xfce.org/src/xfce/tumbler/$major.$minor/tumbler-$version.tar.xz
 
   - name: ristretto
+    buildsystem: meson
     config-opts:
-      - --disable-debug
-      - TUMBLER_SERVICE_NAME_PREFIX=org.xfce.ristretto
+      - --buildtype=minsize
+      - --auto-features=enabled
+      - -Dservice-name-prefix=org.xfce.ristretto
     sources:
       - type: archive
-        url: https://archive.xfce.org/src/apps/ristretto/0.13/ristretto-0.13.3.tar.bz2
-        sha256: 5b9172ef704ae192a5338df6bee4e91a59edc65618c375bb4433ffb38e2126cb
+        url: https://archive.xfce.org/src/apps/ristretto/0.13/ristretto-0.13.4.tar.xz
+        sha256: a84ef8cb80638681d9b9ef09cddff86a5d7a0e028603b4a601cf0ff6c2869ce8
         x-checker-data:
           type: anitya
           project-id: 8365
-          url-template: https://archive.xfce.org/src/apps/ristretto/$major.$minor/ristretto-$version.tar.bz2
+          url-template: https://archive.xfce.org/src/apps/ristretto/$major.$minor/ristretto-$version.tar.xz

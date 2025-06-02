@@ -126,7 +126,7 @@ modules:
           - '*'
         buildsystem: simple
         build-commands:
-          - ./bootstrap.sh --prefix=/app --with-libraries=system,test
+          - ./bootstrap.sh --prefix=/app --with-libraries=system --with-libraries=test
           - ./b2 install variant=release link=shared runtime-link=shared cxxflags="$CXXFLAGS"
             linkflags="$LDFLAGS" -j $FLATPAK_BUILDER_N_JOBS
         sources:

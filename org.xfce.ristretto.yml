@@ -276,8 +276,8 @@ modules:
       - -Draw-thumbnailer=disabled
     sources:
       - type: archive
-        url: https://archive.xfce.org/src/xfce/tumbler/4.21/tumbler-4.21.0.tar.xz
-        sha256: 794b3da6b0665c59dea97dcfe307de0f7f5207b1ce4490b57b379b2571609b35
+        url: https://archive.xfce.org/src/xfce/tumbler/4.21/tumbler-4.21.1.tar.xz
+        sha256: 0f499f79a2a7ee49726a433584dd8a680d514101b72bd1b003360611ce1dc244
         x-checker-data:
           type: anitya
           project-id: 5014

@@ -162,10 +162,11 @@ modules:
       - name: libde265
         cleanup:
           - /bin
+        buildsystem: cmake
         config-opts:
-          - --disable-encoder
-          - --disable-sherlock265
-          - --disable-dec265
+          - -DENABLE_ENCODER=OFF
+          - -DENABLE_DECODER=OFF
+          - -DENABLE_SHERLOCK265=OFF
         sources:
           - type: archive
             url: https://github.com/strukturag/libde265/releases/download/v1.0.17/libde265-1.0.17.tar.gz

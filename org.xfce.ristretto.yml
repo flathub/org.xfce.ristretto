@@ -1,6 +1,6 @@
 app-id: org.xfce.ristretto
 runtime: org.freedesktop.Platform
-runtime-version: '24.08'
+runtime-version: '26.08'
 sdk: org.freedesktop.Sdk
 command: ristretto
 sdk-extensions:
@@ -102,42 +102,6 @@ modules:
           url-template: https://archive.xfce.org/src/xfce/libxfce4ui/$major.$minor/libxfce4ui-$version.tar.xz
 
   # optional dependencies for gdk-pixbuf
-  - name: libopenraw
-    build-options:
-      append-path: /usr/lib/sdk/rust-stable/bin
-    sources:
-      - type: archive
-        url: https://libopenraw.freedesktop.org/download/libopenraw-0.3.7.tar.xz
-        sha256: 0ece41951b2cd91e43f6a8a5c6a894bbc8b5923b4e49a82ebb6d8ce62bded68c
-        x-checker-data:
-          type: anitya
-          project-id: 7980
-          url-template: https://libopenraw.freedesktop.org/download/libopenraw-$version.tar.xz
-      # See https://gitlab.freedesktop.org/libopenraw/libopenraw/-/issues/9
-      # Necessary in this context, to make the pixbuf loader install in /app/lib
-      - type: patch
-        path: patches/build-Honor-installation-prefix-also-for-the-pixbuf-.patch
-      - type: shell
-        commands:
-          - autoreconf -vfi
-    modules:
-      - name: boost
-        cleanup:
-          - '*'
-        buildsystem: simple
-        build-commands:
-          - ./bootstrap.sh --prefix=/app --with-libraries=test
-          - ./b2 install variant=release link=shared runtime-link=shared cxxflags="$CXXFLAGS"
-            linkflags="$LDFLAGS" -j $FLATPAK_BUILDER_N_JOBS
-        sources:
-          - type: archive
-            url: https://archives.boost.io/release/1.92.0/source/boost_1_92_0.tar.gz
-            sha256: c4a3b310ddd2472416e091067166b0713be97c63f38c212c484ada022fd296ce
-            x-checker-data:
-              type: anitya
-              project-id: 6845
-              url-template: https://archives.boost.io/release/$version/source/boost_${version0}_${version1}_$version2.tar.gz
-
   - name: libheif
     buildsystem: cmake-ninja
     config-opts:
@@ -197,41 +161,6 @@ modules:
       - type: shell
         commands:
           - autoreconf -vfi
-
-  - name: webp-pixbuf-loader
-    buildsystem: meson
-    config-opts:
-      - -Dgdk_pixbuf_moduledir=/app/lib/gdk-pixbuf-2.0/2.10.0/loaders/
-    sources:
-      - type: git
-        url: https://github.com/aruiz/webp-pixbuf-loader.git
-        tag: 0.2.7
-        commit: 52232e4ba282b2fed68e8fcb4b5d45ed0eaa4ed3
-        x-checker-data:
-          type: json
-          url: https://api.github.com/repos/aruiz/webp-pixbuf-loader/releases/latest
-          tag-query: .tag_name
-          version-query: $tag
-          timestamp-query: .published_at
-
-  - name: libavif
-    buildsystem: cmake
-    config-opts:
-      - -DAVIF_BUILD_GDK_PIXBUF=ON
-      - -DAVIF_LIBYUV=OFF
-    sources:
-      - type: git
-        url: https://github.com/AOMediaCodec/libavif.git
-        tag: v1.4.2
-        commit: c5240fc79fe5c2407e10afd35f5505ef6333ea49
-        x-checker-data:
-          type: anitya
-          project-id: 178015
-          tag-template: v$version
-      - type: shell
-        commands:
-          - sed -i 's|DESTINATION ${GDK_PIXBUF_MODULEDIR}|DESTINATION /app/lib/gdk-pixbuf-2.0/2.10.0/loaders|'
-            contrib/gdk-pixbuf/CMakeLists.txt
 
   # for the above libraries to be taken into account by gdk-pixbuf, stolen from
   # https://github.com/flathub/org.gnome.eog/blob/master/org.gnome.eog.yml

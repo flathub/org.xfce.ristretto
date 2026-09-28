@@ -82,17 +82,10 @@ modules:
       - -Dvala=disabled
       - -Dstartup-notification=disabled
       - -Dlibgtop=disabled
-      - -Dglade=disabled
     sources:
       - type: archive
-        url: https://archive.xfce.org/src/xfce/libxfce4ui/4.21/libxfce4ui-4.21.0.tar.xz
-        sha256: dd75ff86b6ac814cf71c66004494394eeab962f5360e8e88fa724fa972b9da7b
-      - type: patch
-        path: patches/0001-meson-build-Define-missing-dependencies-when-libgtop.patch
-      - type: patch
-        path: patches/0001-build-Replace-xdt-csource-with-glib-compile-resource.patch
-      - type: patch
-        path: patches/0002-build-Add-xdt-gen-visibility-to-get-rid-of-autotools.patch
+        url: https://archive.xfce.org/src/xfce/libxfce4ui/4.21/libxfce4ui-4.21.9.tar.xz
+        sha256: d2072e0c3c27e39e1c38050c660f34806e34e8b1abba660684db586f8c4f7142
         x-checker-data:
           type: anitya
           project-id: 232000

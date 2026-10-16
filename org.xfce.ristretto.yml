@@ -141,8 +141,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/caolanm/libwmf.git
-        tag: v0.2.16
-        commit: a916f30f6232cf3e28df285fcba5753ee5b1aa0f
+        tag: v0.2.17
+        commit: 84fb4a13021fd540b54f028b50c0a88dde33a3ac
         x-checker-data:
           type: json
           url: https://api.github.com/repos/caolanm/libwmf/releases/latest
